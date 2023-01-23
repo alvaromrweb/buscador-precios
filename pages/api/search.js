@@ -3,14 +3,25 @@ import {scrollPageToBottom} from 'puppeteer-autoscroll-down'
 import fs from 'fs'
 
 export default async function handler(req, res) {
-  const search = `${req.query.q} precio` // Añadir la palabra precio al final de la busqueda para mejor resultado
+  // Añadir la palabra precio al final de la busqueda para mejor resultado
+  const search = `${req.query.q} precio` 
+  // Ponemos tamaño de movil porque las imagenes tienen mejor calidad
+  const viewWidth = 375
+  const viewHeight = 800
 
   const browser = await puppeteer.launch({
-    executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe"
+    executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    args: [`--window-size=${viewWidth},${viewHeight}`],
+    defaultViewport: {
+      width: viewWidth,
+      height: viewHeight,
+      isMobile: true
+    }
   });
   const page = await browser.newPage();
+  // await page.waitForSelector('img.XNo5Ab', {visible: true})
 
-  const wait = (ms) => new Promise(res => setTimeout(res, ms));
+  // const wait = (ms) => new Promise(res => setTimeout(res, ms));
 
   await page.goto(`https://www.google.es/search?q=${search}`, {"waitUntil" : "networkidle0"});
   // const lastPosition = await scrollPageToBottom(page, {
@@ -30,6 +41,8 @@ export default async function handler(req, res) {
       const description = item.querySelector("[data-content-feature='2'] > div")?.innerText
       const web = item.querySelector("cite")?.innerText.split(' ')[0]
       let img = item.querySelector("img")?.src
+
+      // Si la imagen tiene esa cadena, es que no ha cargado aun
       if(img == "data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==") {
         const imgId = item.querySelector("img")?.id
         // Aqui estoy encontrando en un script mediante el id de la imagen, la url de la imagen que carga mas tarde

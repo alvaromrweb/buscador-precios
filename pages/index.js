@@ -32,7 +32,7 @@ export default function Home({props}) {
       <div className="container mx-auto text-center min-h-screen pb-5">
         <div className="flex flex-col justify-center items-center ">
           <h1 className="text-4xl font-bold mt-5 text-white bounce">Buscador de precios</h1>
-          <form className="mt-10 md:flex gap-5 md:w-1/2 text-left">
+          <form className="mt-10 md:flex gap-5 w-11/12 md:w-1/2 text-left">
             <div className="w-full">
               <input type="text" id="search" placeholder="Introduce el nombre del producto" className="000 rounded bg-white/10 text-white outline-none px-3 py-2 w-full" value={search} onChange={e => setSearch(e.target.value)} />
               <small className="text-gray-400 text-left">Por ejemplo: "Mando Xbox Series X"</small>
@@ -48,7 +48,7 @@ export default function Home({props}) {
             </div>
           </form>
           
-          <div id="results" className="flex flex-col w-10/12 gap-5 mt-5">
+          <div id="results" className="flex flex-col w-11/12 md:w-10/12 gap-5 mt-5">
             {loading ? (
               skeletonResults.map((_, index) => <SkeletonResult key={index} />)
             ) : (

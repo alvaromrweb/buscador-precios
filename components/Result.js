@@ -14,9 +14,17 @@ export default function Result({result}) {
           <div className='relative flex-1 text-center md:text-left'>
             <h3 className='text-white text-xl 2xl:text-3xl font-bold mb-1'>{result.title}</h3>
             <p className='text-sm text-gray-400'>{result.description}</p>
+            {result.price && (
+              <p className='text-xl text-white font-bold'>{result.price} €</p>
+            )}
           </div>
-          {/* <small className='text-gray-300 absolute right-4 top-4 hidden md:block'>{result.web}</small> */}
 
+          <div className='absolute right-4 top-4'>
+            <div className='flex gap-2 itesm-center'>
+              <Image src={result.webImg} width={18} height={18} alt={`Icono web ${result.web}`} />
+              <small className='text-gray-200 hidden md:block'>{result.web}</small>
+            </div>
+          </div>
         </div>
       </a>
     </div>

@@ -7,14 +7,12 @@ export default async function handler(req, res) {
   // Añadir la palabra precio al final de la busqueda para mejor resultado
   const search = `${req.query.q} precio` 
   
+  // Cargar version movil para sacar el icono de la web
   const Iphone = KnownDevices['iPhone 8']
 
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.emulate(Iphone);
-  // await page.waitForSelector('img.XNo5Ab', {visible: true})
-
-  const wait = (ms) => new Promise(res => setTimeout(res, ms));
 
   await page.goto(`https://www.google.es/search?q=${search}`);
 

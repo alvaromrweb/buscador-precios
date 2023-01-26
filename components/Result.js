@@ -7,8 +7,8 @@ export default function Result({result}) {
       <a href={result.link} target="_blank">
         <div className='flex flex-col md:flex-row md:space-x-4 items-center md:items-stretch text-left p-5 relative'>
           {result.img && (
-            <div className='mb-4 md:mb-0'>
-                <Image src={result.img} width={104} height={104} alt={`Imagen resultado ${result.title}`} className="text-white object-contain" />
+            <div className='mb-4 md:mb-0 relative'>
+                <Image src={result.img} width="100" height="100" sizes='100px' alt={`Imagen resultado ${result.title}`} className="text-white object-contain  h-auto hover:scale-105 transition" />
             </div>
           )}
           <div className='relative flex-1 text-center md:text-left'>
@@ -21,7 +21,7 @@ export default function Result({result}) {
 
           <div className='absolute right-4 top-4'>
             <div className='flex gap-2 itesm-center'>
-              <Image src={result.webImg} width={18} height={18} alt={`Icono web ${result.web}`} />
+              <Image src={result.webImg} width={18} height={18} alt={`Icono web ${result.web}`} className="h-auto" />
               <small className='text-gray-200 hidden md:block'>{result.web}</small>
             </div>
           </div>

@@ -7,13 +7,21 @@ import SkeletonResult from "../components/SkeletonResult"
 const comparePrices = ( order ) => {
   return function innerSort(a, b) {
     let comparison = 0
-    if ( parseFloat(a.price) < parseFloat(b.price) || a.price === null){
-      comparison = -1;
-    } else if ( parseFloat(a.price) > parseFloat(b.price) || b.price === null ){
-      comparison = 1;
+
+    if (a.price === null && b.price !== null) {
+      comparison = 1
+    } else if (b.price === null && a.price !== null) {
+      comparison = -1
+    } else if (a.price !== null && b.price !== null) {
+      
+      if ( parseFloat(a.price) > parseFloat(b.price)){
+        comparison = 1;
+      } else if ( parseFloat(a.price) < parseFloat(b.price)){
+        comparison = -1;
+      }
     }
     return (
-      (order === 'desc') ? (comparison * -1) : comparison
+      (order === 'desc' && (a.price !== null && b.price !== null)) ? (comparison * -1) : comparison
     );
   }
 }
@@ -24,6 +32,7 @@ export default function Home({props}) {
   const [search, setSearch] = useState('')
   const [orderBy, setOrderBy] = useState('')
   const [results, setResults] = useState([])
+  const [resultsOriginalOrder, setResultsOriginalOrder] = useState([])
   const [loading, setLoading] = useState(false)
 
   let skeletonResults = Array(10).fill(0);
@@ -34,15 +43,13 @@ export default function Home({props}) {
     try {
       const response = await fetch(`api/search?q=${search}`)
       const {data} = await response.json()
-      console.log(data)
+      setResultsOriginalOrder(data)
       if(orderBy !== '') {
         const orderedData = [...data].sort(comparePrices(orderBy))
-        console.log(orderedData)
         setResults(orderedData)
       } else {
         setResults(data)
       }
-      console.log(results)
     } catch (error) {
       console.log(error)
     }
@@ -53,7 +60,8 @@ export default function Home({props}) {
     if(orderBy !== '') {
       const resultadosOrdenados = [...results].sort(comparePrices(orderBy))
       setResults(resultadosOrdenados)
-      console.log(results)
+    } else {
+      setResults(resultsOriginalOrder)
     }
     
   }, [orderBy])

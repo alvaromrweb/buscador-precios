@@ -7,11 +7,11 @@ export default function Result({result}) {
       <a href={result.link} target="_blank">
         <div className='flex flex-col md:flex-row md:space-x-4 items-center md:items-stretch text-left p-5 relative'>
           {result.img && (
-            <div className='mb-4 md:mb-0 relative'>
+            <div className='relative'>
                 <Image src={result.img} width="100" height="100" sizes='100px' alt={`Imagen resultado ${result.title}`} className="text-white object-contain  h-auto hover:scale-105 transition" />
             </div>
           )}
-          <div className='relative flex-1 text-center md:text-left'>
+          <div className='relative flex-1 text-center md:text-left mt-5 md:mt-0'>
             <h3 className='text-white text-xl 2xl:text-3xl font-bold mb-1'>{result.title}</h3>
             <p className='text-sm text-gray-400'>{result.description}</p>
             {result.price && (

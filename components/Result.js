@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Result({result}) {
   return (
     <div className='w-full rounded-lg bg-slate-700 hover:bg-slate-600 shadow-lg transition-colors'>
-      <a href={result.link} target="_blank">
+      <a href={result.link} target="_blank" rel="noreferrer">
         <div className='flex flex-col md:flex-row md:space-x-4 items-center md:items-stretch text-left p-5 relative'>
           {result.img && (
             <div className='relative'>

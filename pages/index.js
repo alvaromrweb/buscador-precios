@@ -76,7 +76,7 @@ export default function Home({props}) {
             <div className="w-full flex">
               <div className="w-3/5 md:w-3/4">
                 <input type="text" id="search" placeholder="Nombre del producto" className="rounded-l-lg  bg-white/10 text-white outline-none px-3 py-2 w-full" value={search} onChange={e => setSearch(e.target.value)} />
-                <small className="text-gray-400 text-left cursor-pointer" onClick={e => setSearch('Mando Xbox Series X')}>Por ejemplo: "Mando Xbox Series X"</small>
+                <small className="text-gray-400 text-left cursor-pointer" onClick={e => setSearch('Mando Xbox Series X')}>Por ejemplo: &quot;Mando Xbox Series X&quot;</small>
               </div>
               <div className="w-2/5 md:w-1/4">
                 <select className="w-full rounded-r-lg bg-white/10  outline-none px-3 py-2 border-l border-white/20 placeholder-gray-400 bg-gray-700 text-white" value={orderBy} onChange={e => setOrderBy(e.target.value)}>

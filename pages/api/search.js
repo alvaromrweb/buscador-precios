@@ -55,6 +55,6 @@ export default async function handler(req, res) {
   });
 
   await browser.close()
-  console.log(data)
+  // console.log(data)
   res.status(200).json({ data })
 }

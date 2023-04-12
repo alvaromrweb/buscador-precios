@@ -81,8 +81,8 @@ export default function Home({props}) {
               <div className="w-2/5 md:w-1/4">
                 <select className="w-full rounded-r-lg bg-white/10  outline-none px-3 py-2 border-l border-white/20 placeholder-gray-400 bg-gray-700 text-white" value={orderBy} onChange={e => setOrderBy(e.target.value)}>
                   <option value="">Ordenar resultados</option>
-                  <option value="asc">Precio Asc</option>
-                  <option value="desc">Precio Desc</option>
+                  <option value="asc">Más barato</option>
+                  <option value="desc">Más caro</option>
                 </select>
               </div>
               

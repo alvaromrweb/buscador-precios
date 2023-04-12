@@ -1,4 +1,3 @@
-import puppeteer from 'puppeteer'
 import chromium from 'chrome-aws-lambda';
 import { KnownDevices } from 'puppeteer'
 import fs from 'fs'
